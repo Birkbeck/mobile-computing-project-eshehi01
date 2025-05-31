@@ -15,7 +15,7 @@
             android:id="@+id/recipeTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Recipe Title"
+            android:text="Avocado Toast"
             android:textStyle="bold"
             android:textSize="18sp" />
 
@@ -23,7 +23,7 @@
             android:id="@+id/recipePreview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Recipe preview goes here..."
+            android:text="Mashed avocado on toast with lemon and chilli flakes ..."
             android:maxLines="2"
             android:ellipsize="end"
             android:textSize="14sp"
