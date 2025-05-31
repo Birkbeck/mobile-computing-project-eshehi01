@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">CulinaryCompanion_EnriketaShehi</string>
+
+    <string-array name="recipe_categories">
+        <item>All</item>
+        <item>Breakfast</item>
+        <item>Brunch</item>
+        <item>Lunch</item>
+        <item>Dinner</item>
+        <item>Desserts</item>
+        <item>Other</item>
+    </string-array>
 </resources>
