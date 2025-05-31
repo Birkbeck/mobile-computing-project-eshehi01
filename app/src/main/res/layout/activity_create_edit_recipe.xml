@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"/>
 
-        <!-- Ingredients List -->
+        <!-- Ingredients Input -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -71,20 +71,16 @@
             android:textStyle="bold"
             android:paddingTop="16dp"/>
 
-        <LinearLayout
-            android:id="@+id/ingredientsContainer"
+        <EditText
+            android:id="@+id/ingredientsEditText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <!-- Dynamically added EditTexts will go here -->
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/addIngredientButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="+ Add Ingredient"
-            android:layout_marginTop="8dp"/>
+            android:layout_height="150dp"
+            android:hint="List ingredients here...\n- 1 ripe avocado\n- 1 tsp lemon or lime juice\n- Salt, to taste"
+            android:inputType="textMultiLine"
+            android:gravity="top"
+            android:background="#EEEEEE"
+            android:padding="8dp"
+            android:scrollbars="vertical"/>
 
         <!-- Instructions Input -->
         <TextView
