@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Culinary Companion"
-        android:textSize="24sp"
+        android:textSize="28sp"
         android:textStyle="bold"
         android:layout_gravity="center_horizontal"
         android:paddingBottom="8dp"/>
@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@android:drawable/ic_media_previous"
-            android:background="?attr/selectableItemBackgroundBorderless"
+            android:background="@drawable/element_background"
             android:contentDescription="Back"/>
 
         <TextView
@@ -50,6 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Ingredients"
+        android:textSize="18sp"
         android:textStyle="bold"
         android:paddingTop="16dp"
         android:paddingBottom="4dp"/>
@@ -64,6 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="1 ripe avocado\n2 slices of sourdough bread..."
+            android:textSize="16sp"
             android:padding="8dp"
             android:background="#EEEEEE"/>
     </ScrollView>
@@ -73,6 +75,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Instructions"
+        android:textSize="18sp"
         android:textStyle="bold"
         android:paddingTop="16dp"
         android:paddingBottom="4dp"/>
@@ -87,15 +90,36 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="1. Toast the Bread...\n2. Prepare the Avocado..."
+            android:textSize="16sp"
             android:padding="8dp"
             android:background="#EEEEEE"/>
     </ScrollView>
 
     <!-- Edit Button -->
-    <Button
-        android:id="@+id/editRecipeButton"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="16dp">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="0.9" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="0.9" />
+
+        <Button
+        android:id="@+id/editRecipeButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.2"
         android:text="Edit Recipe"
-        android:layout_marginTop="16dp"/>
+        android:textSize="16sp" />
+    </LinearLayout>
+
 </LinearLayout>

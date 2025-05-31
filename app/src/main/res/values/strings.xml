@@ -2,6 +2,7 @@
     <string name="app_name">CulinaryCompanion_EnriketaShehi</string>
 
     <string-array name="recipe_categories">
+        <item>Category</item> <!-- Placeholder -->
         <item>All</item>
         <item>Breakfast</item>
         <item>Brunch</item>
