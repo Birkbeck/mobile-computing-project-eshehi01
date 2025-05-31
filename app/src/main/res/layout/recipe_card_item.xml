@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <!-- Recipe Title -->
         <TextView
             android:id="@+id/recipeTitle"
             android:layout_width="match_parent"
@@ -19,6 +20,7 @@
             android:textStyle="bold"
             android:textSize="18sp" />
 
+        <!-- Recipe Preview -->
         <TextView
             android:id="@+id/recipePreview"
             android:layout_width="match_parent"
@@ -29,11 +31,13 @@
             android:textSize="16sp"
             android:layout_marginTop="4dp" />
 
+        <!-- Select Recipe Button -->
         <Button
             android:id="@+id/viewDetailsButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=">"
+            android:textSize="16sp"
             android:layout_gravity="end"
             android:layout_marginTop="8dp"/>
     </LinearLayout>

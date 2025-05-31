@@ -103,6 +103,7 @@
         android:gravity="center_vertical"
         android:layout_marginTop="16dp">
 
+        <!-- Spacer Views: occupy 2/3 of the screen width -->
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -113,6 +114,7 @@
             android:layout_height="0dp"
             android:layout_weight="0.9" />
 
+        <!-- Edit Recipe Button: occupies 1/3 of the screen width -->
         <Button
         android:id="@+id/editRecipeButton"
         android:layout_width="0dp"
