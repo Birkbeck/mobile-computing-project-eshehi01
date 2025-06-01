@@ -30,3 +30,7 @@
     </application>
 
 </manifest>
+
+            <!--android:name=".MainActivity"-->
+            <!--android:name=".RecipeDetailActivity"-->
+            <!--android:name=".CreateEditRecipeActivity"-->
