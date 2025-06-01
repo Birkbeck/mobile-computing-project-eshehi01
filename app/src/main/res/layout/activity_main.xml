@@ -4,7 +4,8 @@
     android:id="@+id/homeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:fitsSystemWindows="true">
 
     <!-- App Title -->
     <TextView
@@ -23,6 +24,9 @@
         android:id="@+id/categorySpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:padding="8dp"
         android:background="@drawable/element_background"
         android:entries="@array/recipe_categories"
         app:layout_constraintTop_toBottomOf="@id/appTitle"
@@ -42,7 +46,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"
-        android:paddingBottom="16dp"/>
+        android:layout_marginBottom="16dp"
+        android:paddingBottom="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"/>
 
     <!-- Add Recipe Button -->
     <Button
@@ -51,6 +58,7 @@
         android:layout_height="wrap_content"
         android:text="+ Add Recipe"
         android:textSize="16sp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 

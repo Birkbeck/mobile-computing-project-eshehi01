@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:fitsSystemWindows="true"
+>
 
     <!-- App title -->
     <TextView
@@ -30,7 +32,12 @@
             android:layout_height="wrap_content"
             android:src="@android:drawable/ic_media_previous"
             android:background="@drawable/element_background"
-            android:contentDescription="Back"/>
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:contentDescription="Back"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:layout_marginStart="16dp"/>
 
         <TextView
             android:id="@+id/recipeTitleTextView"
@@ -41,8 +48,8 @@
             android:text="Avocado Toast"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"/>
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"/>
     </LinearLayout>
 
     <!-- Ingredients Box -->
@@ -53,12 +60,16 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:paddingTop="16dp"
-        android:paddingBottom="4dp"/>
+        android:paddingBottom="4dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"/>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
 
         <TextView
             android:id="@+id/ingredientsTextView"
@@ -67,7 +78,9 @@
             android:text="1 ripe avocado\n2 slices of sourdough bread..."
             android:textSize="16sp"
             android:padding="8dp"
-            android:background="#EEEEEE"/>
+            android:background="#EEEEEE"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"/>
     </ScrollView>
 
     <!-- Instructions Box -->
@@ -78,12 +91,16 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:paddingTop="16dp"
-        android:paddingBottom="4dp"/>
+        android:paddingBottom="4dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"/>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
 
         <TextView
             android:id="@+id/instructionsTextView"
@@ -92,7 +109,9 @@
             android:text="1. Toast the Bread...\n2. Prepare the Avocado..."
             android:textSize="16sp"
             android:padding="8dp"
-            android:background="#EEEEEE"/>
+            android:background="#EEEEEE"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"/>
     </ScrollView>
 
     <!-- Edit Button -->
@@ -101,7 +120,9 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
 
         <!-- Spacer Views: occupy 2/3 of the screen width -->
         <View

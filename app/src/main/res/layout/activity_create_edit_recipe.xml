@@ -3,7 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:fitsSystemWindows="true"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,9 +34,14 @@
                 android:id="@+id/backButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
                 android:src="@android:drawable/ic_media_previous"
                 android:background="@drawable/element_background"
-                android:contentDescription="Back"/>
+                android:contentDescription="Back"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_marginStart="16dp"/>
 
             <TextView
                 android:layout_width="0dp"
@@ -43,8 +51,8 @@
                 android:text="Create/Edit Recipe"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:paddingStart="8dp"
-                android:paddingEnd="8dp"/>
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"/>
         </LinearLayout>
 
         <!-- Recipe Name Input -->
@@ -54,7 +62,10 @@
             android:layout_height="wrap_content"
             android:hint="Recipe Name"
             android:inputType="textPersonName"
-            android:layout_marginTop="16dp"/>
+            android:minHeight="48dp"
+            android:layout_marginTop="16dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"/>
 
     <!-- Category Selector Dropdown -->
     <LinearLayout
@@ -62,7 +73,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="8dp"
-        android:paddingHorizontal="8dp">
+        android:paddingHorizontal="16dp">
 
         <!-- Spinner: occupies 1/3 of the screen width -->
         <Spinner
@@ -70,6 +81,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
             android:background="@drawable/element_background"
             android:entries="@array/recipe_categories" />
 
@@ -92,18 +105,22 @@
             android:text="Ingredients"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:paddingTop="16dp"/>
+            android:paddingTop="16dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"/>
 
         <EditText
             android:id="@+id/ingredientsEditText"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="160dp"
             android:hint="List ingredients here...\n- 1 ripe avocado\n- 1 tsp lemon or lime juice\n- ..."
             android:inputType="textMultiLine"
             android:gravity="top"
             android:background="#EEEEEE"
             android:padding="8dp"
-            android:scrollbars="vertical"/>
+            android:scrollbars="vertical"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"/>
 
         <!-- Instructions Input -->
         <TextView
@@ -112,18 +129,22 @@
             android:text="Instructions"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:paddingTop="16dp"/>
+            android:paddingTop="16dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"/>
 
         <EditText
             android:id="@+id/instructionsEditText"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="160dp"
             android:hint="List instructions here ...\nEstimated preparation time: 10 minutes\n1) Toast the Bread\n..."
             android:inputType="textMultiLine"
             android:gravity="top"
             android:background="#EEEEEE"
             android:padding="8dp"
-            android:scrollbars="vertical"/>
+            android:scrollbars="vertical"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"/>
 
         <!-- Action Buttons -->
         <LinearLayout
@@ -140,7 +161,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Delete"
-                android:textSize="16sp"/>
+                android:textSize="16sp"
+                android:layout_marginStart="16dp"/>
 
             <!-- Spacer View: occupies 1/3 of the screen width -->
             <View
@@ -155,7 +177,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Save"
-                android:textSize="16sp"/>
+                android:textSize="16sp"
+                android:layout_marginEnd="16dp"/>
         </LinearLayout>
 
     </LinearLayout>
