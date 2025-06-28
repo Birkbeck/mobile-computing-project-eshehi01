@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">CulinaryCompanion_EnriketaShehi</string>
+    <string name="culinary_companion">Culinary Companion</string>
+    <string name="add_recipe">+ Add Recipe</string>
 
     <string-array name="recipe_categories">
         <item>Category</item> <!-- Placeholder -->
