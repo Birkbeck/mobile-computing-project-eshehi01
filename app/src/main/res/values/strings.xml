@@ -1,7 +1,27 @@
 <resources>
+
     <string name="app_name">CulinaryCompanion_EnriketaShehi</string>
     <string name="culinary_companion">Culinary Companion</string>
     <string name="add_recipe">+ Add Recipe</string>
+
+
+    <string name="app_title">Culinary Companion</string>
+    <string name="back_button">Back</string>
+    <string name="create_edit_recipe_title">Create/Edit Recipe</string>
+    <string name="hint_recipe_name">Recipe Name</string>
+    <string name="label_ingredients">Ingredients</string>
+    <string name="hint_ingredients">List ingredients here...
+- 1 ripe avocado
+- 1 tsp lemon or lime juice
+- ...</string>
+    <string name="label_instructions">Instructions</string>
+    <string name="hint_instructions">List instructions here ...
+Estimated preparation time: 10 minutes
+1) Toast the Bread
+...</string>
+    <string name="delete">Delete</string>
+    <string name="save">Save</string>
+
 
     <string-array name="recipe_categories">
         <item>Category</item> <!-- Placeholder -->
