@@ -12,12 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CulinaryCompanion_EnriketaShehi"
         tools:targetApi="31">
-        <activity
-            android:name=".CreateEditRecipeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RecipeDetailActivity"
-            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -30,7 +25,3 @@
     </application>
 
 </manifest>
-
-            <!--android:name=".MainActivity"-->
-            <!--android:name=".RecipeDetailActivity"-->
-            <!--android:name=".CreateEditRecipeActivity"-->
