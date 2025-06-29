@@ -63,6 +63,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_recipe_name"
+                android:autofillHints="name"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
                 android:layout_marginTop="16dp"

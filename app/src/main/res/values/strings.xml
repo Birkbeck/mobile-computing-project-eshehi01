@@ -1,28 +1,31 @@
 <resources>
 
+    <!-- Strings used in fragment_main.xml -->
     <string name="app_name">CulinaryCompanion_EnriketaShehi</string>
     <string name="culinary_companion">Culinary Companion</string>
     <string name="add_recipe">+ Add Recipe</string>
 
-
+    <!-- Strings used in fragment_create_edit_recipe.xml -->
     <string name="app_title">Culinary Companion</string>
     <string name="back_button">Back</string>
     <string name="create_edit_recipe_title">Create/Edit Recipe</string>
     <string name="hint_recipe_name">Recipe Name</string>
     <string name="label_ingredients">Ingredients</string>
-    <string name="hint_ingredients">List ingredients here...
-- 1 ripe avocado
-- 1 tsp lemon or lime juice
-- ...</string>
+    <string name="hint_ingredients">List ingredients here &#8230;\n2&#8211; 1 ripe avocado\n2&#8211; 1 tsp lemon or lime juice\n2&#8211; &#8230;</string>
     <string name="label_instructions">Instructions</string>
-    <string name="hint_instructions">List instructions here ...
-Estimated preparation time: 10 minutes
-1) Toast the Bread
-...</string>
+    <string name="hint_instructions">List instructions here &#8230;\n2Estimated preparation time: 10 minutes\n21) Toast the Bread\n2&#8230;</string>
     <string name="delete">Delete</string>
     <string name="save">Save</string>
 
+    <!-- Strings used in fragment_recipe_detail.xml -->
+    <string name="sample_recipe_title">Avocado Toast</string>
+    <string name="ingredients_label">Ingredients</string>
+    <string name="sample_ingredients">1 ripe avocado\n2 slices of sourdough bread &#8230;</string>
+    <string name="instructions_label">Instructions</string>
+    <string name="sample_instructions">1. Toast the Bread &#8230;\n2. Prepare the Avocado &#8230;</string>
+    <string name="edit_recipe">Edit Recipe</string>
 
+    <!-- -->
     <string-array name="recipe_categories">
         <item>Category</item> <!-- Placeholder -->
         <item>All</item>
