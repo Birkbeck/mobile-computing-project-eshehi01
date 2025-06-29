@@ -1,11 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph.xml"
+    android:id="@+id/nav_graph"
     app:startDestination="@id/mainFragment">
 
     <fragment
         android:id="@+id/mainFragment"
         android:name="co.uk.bbk.culinarycompanion_enriketashehi.MainFragment"
-        android:label="MainFragment" />
+        android:label="Main">
+
+        <action
+            android:id="@+id/action_mainFragment_to_recipeDetailFragment"
+            app:destination="@id/recipeDetailFragment" />
+
+        <action
+            android:id="@+id/action_mainFragment_to_createEditRecipeFragment"
+            app:destination="@id/createEditRecipeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/recipeDetailFragment"
+        android:name="co.uk.bbk.culinarycompanion_enriketashehi.RecipeDetailFragment"
+        android:label="Recipe Detail">
+
+        <action
+            android:id="@+id/action_recipeDetailFragment_to_createEditRecipeFragment"
+            app:destination="@id/createEditRecipeFragment" />
+
+        <action
+            android:id="@+id/action_recipeDetailFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/createEditRecipeFragment"
+        android:name="co.uk.bbk.culinarycompanion_enriketashehi.CreateEditRecipeFragment"
+        android:label="Create/Edit Recipe">
+
+        <action
+            android:id="@+id/action_createEditRecipeFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+
 </navigation>
