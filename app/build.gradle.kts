@@ -53,6 +53,11 @@ dependencies {
     implementation("androidx.navigation:navigation-dynamic-features-fragment:2.7.7")
     androidTestImplementation("androidx.navigation:navigation-testing:2.7.7")
 
+    // Lifecycle libraries
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+
     // Default dependencies
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
