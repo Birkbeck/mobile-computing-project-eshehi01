@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <!-- No variables yet, leave empty for now -->
+        <variable
+            name="recipe"
+            type="co.uk.bbk.culinarycompanion_enriketashehi.Recipe" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -17,12 +20,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <!-- Category Chip -->
+            <TextView
+                android:id="@+id/recipeCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{recipe.category}"
+                android:background="@android:color/darker_gray"
+                android:textColor="@android:color/white"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:textSize="12sp"
+                android:layout_gravity="start"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="@android:color/darker_gray"
+                android:drawablePadding="4dp"
+                app:drawableStartCompat="@android:drawable/ic_menu_info_details" />
+
             <!-- Recipe Title -->
             <TextView
                 android:id="@+id/recipeTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Avocado Toast"
+                android:text="@{recipe.title}"
                 android:textStyle="bold"
                 android:textSize="18sp" />
 
@@ -31,19 +53,20 @@
                 android:id="@+id/recipePreview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mashed avocado on toast with lemon and chilli flakes ..."
+                android:text="@{recipe.preview}"
                 android:maxLines="2"
                 android:ellipsize="end"
                 android:textSize="16sp"
                 android:layout_marginTop="4dp" />
 
             <!-- Select Recipe Button -->
-            <Button
+            <ImageButton
                 android:id="@+id/viewDetailsButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=">"
-                android:textSize="16sp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                app:srcCompat="@drawable/baseline_chevron_right_24"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/view_recipe_details"
                 android:layout_gravity="end"
                 android:layout_marginTop="8dp"/>
         </LinearLayout>
