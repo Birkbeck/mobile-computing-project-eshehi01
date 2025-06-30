@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import co.uk.bbk.culinarycompanion_enriketashehi.databinding.FragmentCreateEditRecipeBinding
 
 class CreateEditRecipeFragment : Fragment() {
@@ -19,6 +20,15 @@ class CreateEditRecipeFragment : Fragment() {
     ): View {
         _binding = FragmentCreateEditRecipeBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.backButton.setOnClickListener {
+            // Navigate back to the Home (MainFragment)
+            findNavController().navigateUp()
+        }
     }
 
     override fun onDestroyView() {
