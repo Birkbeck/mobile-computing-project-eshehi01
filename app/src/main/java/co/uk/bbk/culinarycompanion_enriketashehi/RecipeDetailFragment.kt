@@ -39,6 +39,11 @@ class RecipeDetailFragment : Fragment() {
         binding.backButton.setOnClickListener {
             findNavController().navigateUp()
         }
+
+        // Handle Edit Recipe button click
+        binding.editRecipeButton.setOnClickListener {
+            findNavController().navigate(R.id.action_recipeDetailFragment_to_createEditRecipeFragment)
+        }
     }
 
     override fun onDestroyView() {
