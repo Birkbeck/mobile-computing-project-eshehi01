@@ -14,8 +14,8 @@ class RecipeAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(recipe: Recipe) {
-            binding.recipeTitle.text = recipe.title
-            binding.recipePreview.text = recipe.preview
+            binding.recipe = recipe
+            binding.executePendingBindings()
 
             binding.viewDetailsButton.setOnClickListener {
                 onItemClick(recipe)
