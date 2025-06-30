@@ -2,6 +2,8 @@
 
     <string name="home_screen_title">Home</string>
 
+    <string name="recipe_detail">Recipe Detail</string>
+
     <!-- Strings used in fragment_main.xml -->
     <string name="app_name">CulinaryCompanion_EnriketaShehi</string>
     <string name="culinary_companion">Culinary Companion</string>
@@ -13,9 +15,9 @@
     <string name="create_edit_recipe_title">Create/Edit Recipe</string>
     <string name="hint_recipe_name">Recipe Name</string>
     <string name="label_ingredients">Ingredients</string>
-    <string name="hint_ingredients">List ingredients here &#8230;\n2&#8211; 1 ripe avocado\n2&#8211; 1 tsp lemon or lime juice\n2&#8211; &#8230;</string>
+    <string name="hint_ingredients">List ingredients here &#8230;\n&#8211; 1 ripe avocado\n&#8211; 1 tsp lemon or lime juice\n&#8211; &#8230;</string>
     <string name="label_instructions">Instructions</string>
-    <string name="hint_instructions">List instructions here &#8230;\n2Estimated preparation time: 10 minutes\n21) Toast the Bread\n2&#8230;</string>
+    <string name="hint_instructions">List instructions here &#8230;\nEstimated preparation time: 10 minutes\n1) Toast the Bread\n&#8230;</string>
     <string name="delete">Delete</string>
     <string name="save">Save</string>
 
