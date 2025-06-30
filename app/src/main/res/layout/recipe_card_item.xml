@@ -1,45 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    android:elevation="4dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:padding="12dp"
+    <data>
+        <!-- No variables yet, leave empty for now -->
+    </data>
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:elevation="4dp">
 
-        <!-- Recipe Title -->
-        <TextView
-            android:id="@+id/recipeTitle"
+        <LinearLayout
+            android:orientation="vertical"
+            android:padding="12dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Avocado Toast"
-            android:textStyle="bold"
-            android:textSize="18sp" />
+            android:layout_height="wrap_content">
 
-        <!-- Recipe Preview -->
-        <TextView
-            android:id="@+id/recipePreview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Mashed avocado on toast with lemon and chilli flakes ..."
-            android:maxLines="2"
-            android:ellipsize="end"
-            android:textSize="16sp"
-            android:layout_marginTop="4dp" />
+            <!-- Recipe Title -->
+            <TextView
+                android:id="@+id/recipeTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Avocado Toast"
+                android:textStyle="bold"
+                android:textSize="18sp" />
 
-        <!-- Select Recipe Button -->
-        <Button
-            android:id="@+id/viewDetailsButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=">"
-            android:textSize="16sp"
-            android:layout_gravity="end"
-            android:layout_marginTop="8dp"/>
-    </LinearLayout>
+            <!-- Recipe Preview -->
+            <TextView
+                android:id="@+id/recipePreview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mashed avocado on toast with lemon and chilli flakes ..."
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textSize="16sp"
+                android:layout_marginTop="4dp" />
 
-</androidx.cardview.widget.CardView>
+            <!-- Select Recipe Button -->
+            <Button
+                android:id="@+id/viewDetailsButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=">"
+                android:textSize="16sp"
+                android:layout_gravity="end"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>
