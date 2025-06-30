@@ -29,6 +29,9 @@
     <string name="sample_instructions">1. Toast the Bread &#8230;\n2. Prepare the Avocado &#8230;</string>
     <string name="edit_recipe">Edit Recipe</string>
 
+    <!-- Strings used in recipe_card_item.xml -->
+    <string name="view_recipe_details">View recipe details</string>
+
     <!-- -->
     <string-array name="recipe_categories">
         <item>Category</item> <!-- Placeholder -->
