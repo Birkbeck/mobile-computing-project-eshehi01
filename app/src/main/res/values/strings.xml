@@ -1,5 +1,7 @@
 <resources>
 
+    <string name="home_screen_title">Home</string>
+
     <!-- Strings used in fragment_main.xml -->
     <string name="app_name">CulinaryCompanion_EnriketaShehi</string>
     <string name="culinary_companion">Culinary Companion</string>
