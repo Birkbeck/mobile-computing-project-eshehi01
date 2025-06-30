@@ -23,6 +23,14 @@
         android:name="co.uk.bbk.culinarycompanion_enriketashehi.RecipeDetailFragment"
         android:label="Recipe Detail">
 
+        <argument
+            android:name="recipeTitle"
+            app:argType="string" />
+
+        <argument
+            android:name="recipePreview"
+            app:argType="string" />
+
         <action
             android:id="@+id/action_recipeDetailFragment_to_createEditRecipeFragment"
             app:destination="@id/createEditRecipeFragment" />
