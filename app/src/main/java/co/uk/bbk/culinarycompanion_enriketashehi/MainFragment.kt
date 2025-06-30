@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import co.uk.bbk.culinarycompanion_enriketashehi.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
@@ -18,6 +19,10 @@ class MainFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as MainActivity).setTitle("Main")
+        (activity as MainActivity).setTitle(R.string.home_screen_title)
+
+        binding.addRecipeButton.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_createEditRecipeFragment)
+        }
     }
 }
