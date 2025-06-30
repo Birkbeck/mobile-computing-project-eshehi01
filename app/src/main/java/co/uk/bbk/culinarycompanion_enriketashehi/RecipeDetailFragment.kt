@@ -6,12 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import co.uk.bbk.culinarycompanion_enriketashehi.databinding.FragmentRecipeDetailBinding
 
 class RecipeDetailFragment : Fragment() {
 
     private var _binding: FragmentRecipeDetailBinding? = null
     private val binding get() = _binding!!
+
+    private val args: RecipeDetailFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,6 +28,14 @@ class RecipeDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Update the activity title
+        requireActivity().title = getString(R.string.recipe_detail)
+
+        // Set the text fields using arguments passed from MainFragment
+        binding.recipeTitleTextView.text = args.recipeTitle
+        binding.ingredientsTextView.text = args.recipePreview
+
+        // Handle back button click
         binding.backButton.setOnClickListener {
             findNavController().navigateUp()
         }
