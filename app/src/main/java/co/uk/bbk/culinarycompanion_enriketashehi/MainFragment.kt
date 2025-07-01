@@ -28,9 +28,20 @@ class MainFragment : Fragment() {
 
         // Test data
         val recipes = listOf(
-            Recipe("Avocado Toast", "Mashed avocado on toast with lemon and chilli flakes ..."),
-            Recipe("Pancakes", "Fluffy pancakes with maple syrup ..."),
-            Recipe("Pasta Salad", "Pasta with veggies and Italian dressing ...")
+            Recipe(
+                title ="Avocado Toast",
+                preview = "Mashed avocado on toast with lemon and chilli flakes",
+                ingredients = "2 slices bread, 1 avocado, lemon juice, chilli flakes, salt, pepper.",
+                instructions = "Toast the bread. Mash avocado with lemon juice, salt, and pepper. Spread on toast. Sprinkle chilli flakes.",
+                category= "Breakfast"
+            ),
+            Recipe(
+                title = "Chocolate Cake",
+                preview = "A rich chocolate sponge cake...",
+                ingredients = "Flour, cocoa powder, eggs, sugar, butter.",
+                instructions = "Mix ingredients. Bake at 180°C for 30 minutes.",
+                category = "Desserts"
+            )
         )
 
         adapter = RecipeAdapter(recipes) { selectedRecipe ->
@@ -38,7 +49,10 @@ class MainFragment : Fragment() {
             val action = MainFragmentDirections
                 .actionMainFragmentToRecipeDetailFragment(
                     recipeTitle = selectedRecipe.title,
-                    recipePreview = selectedRecipe.preview
+                    recipePreview = selectedRecipe.preview,
+                    recipeIngredients = selectedRecipe.ingredients,
+                    recipeInstructions = selectedRecipe.instructions,
+                    recipeCategory = selectedRecipe.category
                 )
             findNavController().navigate(action)
         }
