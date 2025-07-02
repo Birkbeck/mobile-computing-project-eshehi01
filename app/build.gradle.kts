@@ -28,13 +28,16 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
     kotlinOptions {
         jvmTarget = "11"
     }
+
     buildFeatures {
         dataBinding = true
     }
@@ -46,24 +49,24 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
-    implementation("androidx.activity:activity-ktx:1.8.2")
+    implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.constraintlayout)
 
     // Navigation component dependencies
-    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
-    implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
-    implementation("androidx.navigation:navigation-dynamic-features-fragment:2.7.7")
-    androidTestImplementation("androidx.navigation:navigation-testing:2.7.7")
+    implementation(libs.androidx.navigation.fragmentKtx)
+    implementation(libs.androidx.navigation.uiKtx)
+    implementation(libs.androidx.navigation.dynamicFeaturesFragment)
+    androidTestImplementation(libs.androidx.navigation.testing)
 
     // Lifecycle libraries
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
 
     // Room dependencies
-    implementation("androidx.room:room-runtime:2.5.1")
-    implementation("androidx.room:room-ktx:2.5.1")
-    kapt("androidx.room:room-compiler:2.5.1")
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    kapt(libs.androidx.room.compiler)
 
     // Default dependencies
     testImplementation(libs.junit)
