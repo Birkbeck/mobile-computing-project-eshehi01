@@ -4,10 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import co.uk.bbk.culinarycompanion_enriketashehi.databinding.FragmentCreateEditRecipeBinding
+import kotlinx.coroutines.launch
 
 class CreateEditRecipeFragment : Fragment() {
 
@@ -15,6 +19,9 @@ class CreateEditRecipeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: RecipeViewModel by viewModels()
+    private val args: CreateEditRecipeFragmentArgs by navArgs()
+
+    private var currentRecipe: Recipe? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,11 +35,24 @@ class CreateEditRecipeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // 1. Load spinner data
+        val categories = resources.getStringArray(R.array.recipe_categories)
+        val spinnerAdapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_spinner_item,
+            categories
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        }
+        binding.categorySpinner.adapter = spinnerAdapter
+
+        // 2. Back button click
         binding.backButton.setOnClickListener {
             // Navigate back to the previous page
             findNavController().navigateUp()
         }
 
+        // 3. Save button click
         binding.saveButton.setOnClickListener {
             val title = binding.recipeNameEditText.text.toString()
             val preview = binding.instructionsEditText.text.toString().take(30) + "..."
