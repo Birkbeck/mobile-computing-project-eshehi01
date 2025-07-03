@@ -38,7 +38,7 @@
                     android:layout_height="wrap_content"
                     android:minWidth="48dp"
                     android:minHeight="48dp"
-                    android:src="@android:drawable/ic_media_previous"
+                    app:srcCompat="@drawable/baseline_chevron_left_24"
                     android:background="@drawable/element_background"
                     android:contentDescription="@string/back_button"
                     android:paddingStart="16dp"
@@ -71,6 +71,7 @@
                 android:paddingEnd="16dp"/>
 
             <!-- Category Selector Dropdown -->
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -87,7 +88,7 @@
                     android:minWidth="48dp"
                     android:minHeight="48dp"
                     android:background="@drawable/element_background"
-                    android:entries="@array/recipe_categories" />
+                     />
 
                 <!-- Spacer Views: occupy 2/3 of the screen width -->
                 <View
