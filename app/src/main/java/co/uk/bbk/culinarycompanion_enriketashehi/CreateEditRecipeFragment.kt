@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -23,6 +25,9 @@ class CreateEditRecipeFragment : Fragment() {
 
     private var currentRecipe: Recipe? = null
 
+    // Make these available at class-level so we can reuse them in populateFields
+    private lateinit var filteredCategories: List<String>
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -35,45 +40,133 @@ class CreateEditRecipeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // 1. Load spinner data
-        val categories = resources.getStringArray(R.array.recipe_categories)
-        val spinnerAdapter = ArrayAdapter(
+        // Full list from resources (including Category and All)
+        val fullCategories = resources.getStringArray(R.array.recipe_categories)
+
+        // Filtered list excludes "Category" and "All"
+        filteredCategories = fullCategories.filter { it != "Category" && it != "All" }
+
+        // Create adapter for spinner dropdown with filtered categories
+        val adapter = object : ArrayAdapter<String>(
             requireContext(),
             android.R.layout.simple_spinner_item,
-            categories
-        ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            filteredCategories
+        ) {
+            override fun getCount(): Int {
+                return filteredCategories.size
+            }
         }
-        binding.categorySpinner.adapter = spinnerAdapter
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.categorySpinner.adapter = adapter
 
-        // 2. Back button click
+        // Set no selection initially
+        binding.categorySpinner.setSelection(-1, false)
+
+        // Show a spinner prompt
+        binding.categorySpinner.prompt = "Category"
+
+        binding.categorySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                val selectedCategory = filteredCategories[position]
+                // Handle the selected category
+                Toast.makeText(requireContext(), "Selected: $selectedCategory", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+            }
+        }
+
+        // Default state: hide delete button
+        binding.deleteButton.visibility = View.GONE
+
+        // Check if editing existing recipe
+        if (args.recipeId != -1) {
+            viewLifecycleOwner.lifecycleScope.launch {
+                val recipe = viewModel.getRecipeById(args.recipeId)
+                if (recipe != null) {
+                    currentRecipe = recipe
+                    populateFields(recipe)
+                    binding.deleteButton.visibility = View.VISIBLE
+                }
+            }
+        }
+
         binding.backButton.setOnClickListener {
-            // Navigate back to the previous page
             findNavController().navigateUp()
         }
 
-        // 3. Save button click
         binding.saveButton.setOnClickListener {
-            val title = binding.recipeNameEditText.text.toString()
-            val preview = binding.instructionsEditText.text.toString().take(30) + "..."
-            val ingredients = binding.ingredientsEditText.text.toString()
-            val instructions = binding.instructionsEditText.text.toString()
-            val category = binding.categorySpinner.selectedItem?.toString() ?: ""
+            saveRecipe()
+        }
 
-            if (title.isBlank() || category.isBlank()) {
-                // Handle validation error
-                return@setOnClickListener
-            }
+        binding.deleteButton.setOnClickListener {
+            deleteRecipe()
+        }
+    }
 
-            val newRecipe = Recipe(
-                title = title,
-                preview = preview,
-                ingredients = ingredients,
-                instructions = instructions,
-                category = category
-            )
+    private fun populateFields(recipe: Recipe) {
+        binding.recipeNameEditText.setText(recipe.title)
+        binding.ingredientsEditText.setText(recipe.ingredients)
+        binding.instructionsEditText.setText(recipe.instructions)
 
-            viewModel.insertRecipe(newRecipe)
+        // Find the index in filteredCategories (not in the full list)
+        val index = filteredCategories.indexOf(recipe.category)
+        if (index >= 0) {
+            binding.categorySpinner.setSelection(index, false)
+        } else {
+            // Keep unselected if not found
+            binding.categorySpinner.setSelection(-1, false)
+        }
+    }
+
+    private fun saveRecipe() {
+        val title = binding.recipeNameEditText.text.toString().trim()
+        val preview = binding.instructionsEditText.text.toString().take(30) + "..."
+        val ingredients = binding.ingredientsEditText.text.toString().trim()
+        val instructions = binding.instructionsEditText.text.toString().trim()
+
+        val selectedPosition = binding.categorySpinner.selectedItemPosition
+        val category = if (selectedPosition != AdapterView.INVALID_POSITION) {
+            filteredCategories[selectedPosition]
+        } else {
+            ""
+        }
+
+        if (title.isBlank() || category.isBlank()) {
+            Toast.makeText(
+                requireContext(),
+                "Please enter a recipe title and select a category.",
+                Toast.LENGTH_SHORT
+            ).show()
+            return
+        }
+
+        val recipeToSave = Recipe(
+            id = currentRecipe?.id ?: 0,
+            title = title,
+            preview = preview,
+            ingredients = ingredients,
+            instructions = instructions,
+            category = category
+        )
+
+        if (currentRecipe == null) {
+            viewModel.insertRecipe(recipeToSave)
+        } else {
+            viewModel.updateRecipe(recipeToSave)
+        }
+
+        findNavController().navigateUp()
+    }
+
+    private fun deleteRecipe() {
+        currentRecipe?.let { recipe ->
+            viewModel.deleteRecipe(recipe)
             findNavController().navigateUp()
         }
     }
