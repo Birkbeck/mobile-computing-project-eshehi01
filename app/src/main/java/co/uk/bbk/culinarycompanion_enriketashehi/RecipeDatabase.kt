@@ -22,7 +22,7 @@ abstract class RecipeDatabase : RoomDatabase() {
                     RecipeDatabase::class.java,
                     "recipe_database"
                 )
-                    .fallbackToDestructiveMigration()  // handles schema changes by wiping data
+                    .fallbackToDestructiveMigration(false)  // handles schema changes by wiping data
                     .build()
                 INSTANCE = instance
                 instance
