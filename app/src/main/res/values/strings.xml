@@ -4,37 +4,46 @@
 
     <string name="recipe_detail">Recipe Detail</string>
 
+    <string name="recipe_not_found">Recipe not found</string>
+
     <!-- Strings used in fragment_main.xml -->
     <string name="app_name">CulinaryCompanion_EnriketaShehi</string>
     <string name="culinary_companion">Culinary Companion</string>
     <string name="add_recipe">+ Add Recipe</string>
 
+    <!-- Strings used in fragment_recipe_detail.xml -->
     <!-- Strings used in fragment_create_edit_recipe.xml -->
     <string name="app_title">Culinary Companion</string>
     <string name="back_button">Back</string>
     <string name="create_edit_recipe_title">Create/Edit Recipe</string>
-    <string name="hint_recipe_name">Recipe Name</string>
+    <string name="hint_recipe_title">Recipe Title</string>
+    <string name="spinner_prompt_category">Select Category</string>
     <string name="label_ingredients">Ingredients</string>
-    <string name="hint_ingredients">List ingredients here &#8230;\n&#8211; 1 ripe avocado\n&#8211; 1 tsp lemon or lime juice\n&#8211; &#8230;</string>
+    <string name="placeholder_ingredients">
+        First ingredient - name and quantity.\n
+        Second ingredient - name and quantity.\n
+        &#8230;
+    </string>
     <string name="label_instructions">Instructions</string>
-    <string name="hint_instructions">List instructions here &#8230;\nEstimated preparation time: 10 minutes\n1) Toast the Bread\n&#8230;</string>
+    <string name="placeholder_instructions">
+        Brief description of dish and approximate preparation time.\n
+        (This will appear on the Recipe Card on the Home page.)\n
+        1. First instruction.\n
+        2. Second instruction.\n
+        &#8230;
+    </string>
     <string name="delete">Delete</string>
     <string name="save">Save</string>
 
     <!-- Strings used in fragment_recipe_detail.xml -->
-    <string name="sample_recipe_title">Avocado Toast</string>
-    <string name="ingredients_label">Ingredients</string>
-    <string name="sample_ingredients">1 ripe avocado\n2 slices of sourdough bread &#8230;</string>
-    <string name="instructions_label">Instructions</string>
-    <string name="sample_instructions">1. Toast the Bread &#8230;\n2. Prepare the Avocado &#8230;</string>
     <string name="edit_recipe">Edit Recipe</string>
 
     <!-- Strings used in recipe_card_item.xml -->
     <string name="view_recipe_details">View recipe details</string>
 
-    <!-- -->
+    <!-- List of Categories -->
     <string-array name="recipe_categories">
-        <item>Category</item> <!-- Placeholder -->
+        <item>Category</item>
         <item>All</item>
         <item>Breakfast</item>
         <item>Brunch</item>
