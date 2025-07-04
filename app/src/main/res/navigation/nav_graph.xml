@@ -24,24 +24,9 @@
         android:label="Recipe Detail">
 
         <argument
-            android:name="recipeTitle"
-            app:argType="string" />
-
-        <argument
-            android:name="recipePreview"
-            app:argType="string" />
-
-        <argument
-            android:name="recipeIngredients"
-            app:argType="string" />
-
-        <argument
-            android:name="recipeInstructions"
-            app:argType="string" />
-
-        <argument
-            android:name="recipeCategory"
-            app:argType="string" />
+            android:name="recipeId"
+            app:argType="integer"
+            android:defaultValue="-1" />
 
         <action
             android:id="@+id/action_recipeDetailFragment_to_createEditRecipeFragment"
@@ -56,6 +41,11 @@
         android:id="@+id/createEditRecipeFragment"
         android:name="co.uk.bbk.culinarycompanion_enriketashehi.CreateEditRecipeFragment"
         android:label="Create/Edit Recipe">
+
+        <argument
+            android:name="recipeId"
+            app:argType="integer"
+            android:defaultValue="-1" />
 
         <action
             android:id="@+id/action_createEditRecipeFragment_to_mainFragment"
