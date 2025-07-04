@@ -4,7 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +18,8 @@ class MainFragment : Fragment() {
 
     private lateinit var binding: FragmentMainBinding
     private lateinit var adapter: RecipeAdapter
+
+    private val viewModel: RecipeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,35 +33,72 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (activity as MainActivity).setTitle(R.string.home_screen_title)
+        (activity as? MainActivity)?.setTitle(R.string.home_screen_title)
 
-        val db = RecipeDatabase.getDatabase(requireContext())
-        val recipeDao = db.recipeDao()
+        // --- Spinner setup ---
 
-        // Load recipes from the database in a coroutine
+        val categories = resources.getStringArray(R.array.recipe_categories)
+
+        val spinnerAdapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_spinner_item,
+            categories
+        )
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        binding.categoryFilterSpinner.adapter = spinnerAdapter
+
+        binding.categoryFilterSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                val selectedCategory = categories[position]
+                filterRecipes(selectedCategory)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // Do nothing
+            }
+        }
+
+        // Initially load all recipes
+        loadAllRecipes()
+
+        binding.addRecipeButton.setOnClickListener {
+            val action = MainFragmentDirections
+                .actionMainFragmentToCreateEditRecipeFragment(recipeId = -1)
+            findNavController().navigate(action)
+        }
+    }
+
+    private fun loadAllRecipes() {
+        filterRecipes("All")
+    }
+
+    private fun filterRecipes(category: String) {
         viewLifecycleOwner.lifecycleScope.launch {
-            val recipes = recipeDao.getAllRecipes()
+            val allRecipes = viewModel.getAllRecipes()
 
-            // Create adapter with the loaded recipes
-            adapter = RecipeAdapter(recipes) { selectedRecipe ->
-                // Handle click on ">"
+            val filteredRecipes = if (category == "All" || category == "Category") {
+                allRecipes
+            } else {
+                allRecipes.filter { it.category == category }
+            }
+
+            adapter = RecipeAdapter(filteredRecipes) { selectedRecipe ->
                 val action = MainFragmentDirections
                     .actionMainFragmentToRecipeDetailFragment(
-                        recipeTitle = selectedRecipe.title,
-                        recipePreview = selectedRecipe.preview,
-                        recipeCategory = selectedRecipe.category,
-                        recipeIngredients = selectedRecipe.ingredients,
-                        recipeInstructions = selectedRecipe.instructions
+                        recipeId = selectedRecipe.id
                     )
                 findNavController().navigate(action)
             }
 
-            binding.recipeRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+            binding.recipeRecyclerView.layoutManager =
+                LinearLayoutManager(requireContext())
             binding.recipeRecyclerView.adapter = adapter
-        }
-
-        binding.addRecipeButton.setOnClickListener {
-            findNavController().navigate(R.id.action_mainFragment_to_createEditRecipeFragment)
         }
     }
 }
