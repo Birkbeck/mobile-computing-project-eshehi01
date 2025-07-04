@@ -2,7 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <!-- Define variable here later, e.g. viewModel -->
+        <!-- Data can be placed here if required -->
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,7 +25,7 @@
 
         <!-- Category Filter Dropdown -->
         <Spinner
-            android:id="@+id/categorySpinner"
+            android:id="@+id/categoryFilterSpinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minWidth="48dp"
@@ -45,7 +45,7 @@
             android:layout_height="0dp"
             android:clipToPadding="false"
             android:background="@drawable/element_background"
-            app:layout_constraintTop_toBottomOf="@id/categorySpinner"
+            app:layout_constraintTop_toBottomOf="@id/categoryFilterSpinner"
             app:layout_constraintBottom_toTopOf="@id/addRecipeButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
