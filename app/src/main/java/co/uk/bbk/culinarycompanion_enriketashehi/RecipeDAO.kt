@@ -8,6 +8,9 @@ interface RecipeDao {
     @Query("SELECT * FROM recipe")
     suspend fun getAllRecipes(): List<Recipe>
 
+    @Query("SELECT * FROM recipe WHERE id = :id")
+    suspend fun getRecipeById(id: Int): Recipe?
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertRecipe(recipe: Recipe)
 
