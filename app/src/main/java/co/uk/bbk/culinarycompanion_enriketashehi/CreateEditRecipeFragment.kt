@@ -111,6 +111,7 @@ class CreateEditRecipeFragment : Fragment() {
 
     private fun populateFields(recipe: Recipe) {
         binding.recipeNameEditText.setText(recipe.title)
+        binding.previewEditText.setText(recipe.preview)
         binding.ingredientsEditText.setText(recipe.ingredients)
         binding.instructionsEditText.setText(recipe.instructions)
 
@@ -126,7 +127,7 @@ class CreateEditRecipeFragment : Fragment() {
 
     private fun saveRecipe() {
         val title = binding.recipeNameEditText.text.toString().trim()
-        val preview = binding.instructionsEditText.text.toString().take(30) + "..."
+        val preview = binding.previewEditText.text.toString().trim()
         val ingredients = binding.ingredientsEditText.text.toString().trim()
         val instructions = binding.instructionsEditText.text.toString().trim()
 
