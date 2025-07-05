@@ -9,11 +9,9 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import co.uk.bbk.culinarycompanion_enriketashehi.databinding.FragmentCreateEditRecipeBinding
-import kotlinx.coroutines.launch
 
 class CreateEditRecipeFragment : Fragment() {
 
@@ -78,6 +76,7 @@ class CreateEditRecipeFragment : Fragment() {
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
+                // No action needed
             }
         }
 
@@ -86,12 +85,13 @@ class CreateEditRecipeFragment : Fragment() {
 
         // Check if editing existing recipe
         if (args.recipeId != -1) {
-            viewLifecycleOwner.lifecycleScope.launch {
-                val recipe = viewModel.getRecipeById(args.recipeId)
+            viewModel.getRecipeById(args.recipeId).observe(viewLifecycleOwner) { recipe ->
                 if (recipe != null) {
                     currentRecipe = recipe
                     populateFields(recipe)
                     binding.deleteButton.visibility = View.VISIBLE
+                } else {
+                    Toast.makeText(requireContext(), "Recipe not found", Toast.LENGTH_SHORT).show()
                 }
             }
         }
