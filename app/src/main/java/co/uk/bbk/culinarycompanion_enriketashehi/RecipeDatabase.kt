@@ -94,5 +94,14 @@ abstract class RecipeDatabase : RoomDatabase() {
                 recipes.forEach { recipeDao.insertRecipe(it) }
             }
         }
+
+        fun setTestInstance(testDb: RecipeDatabase) {
+            INSTANCE = testDb
+        }
+
+        fun clearTestInstance() {
+            INSTANCE = null
+        }
+
     }
 }
