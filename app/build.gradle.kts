@@ -71,5 +71,19 @@ dependencies {
     // Default dependencies
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
+
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // Room testing
+    implementation("androidx.work:work-testing:2.9.0")
+    testImplementation("androidx.room:room-testing:2.7.2")
+    androidTestImplementation("androidx.arch.core:core-testing:2.2.0")
+    androidTestImplementation("androidx.room:room-testing:2.7.2")
+
+    // AndroidX test libraries
+    androidTestImplementation("androidx.test:core:1.6.1")
+    androidTestImplementation("androidx.test:runner:1.6.2")
+
+    // Coroutines test
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
 }
