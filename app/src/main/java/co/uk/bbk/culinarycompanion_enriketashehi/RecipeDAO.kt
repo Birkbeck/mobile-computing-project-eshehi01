@@ -20,4 +20,7 @@ interface RecipeDao {
 
     @Delete
     suspend fun deleteRecipe(recipe: Recipe)
+
+    @Query("SELECT COUNT(*) FROM recipe")
+    suspend fun countRecipes(): Int
 }
