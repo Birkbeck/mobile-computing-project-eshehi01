@@ -23,4 +23,7 @@ interface RecipeDao {
 
     @Query("SELECT COUNT(*) FROM recipe")
     suspend fun countRecipes(): Int
+
+    @Query("SELECT * FROM recipe WHERE id = :id")
+    suspend fun getRecipeByIdSync(id: Int): Recipe?
 }
