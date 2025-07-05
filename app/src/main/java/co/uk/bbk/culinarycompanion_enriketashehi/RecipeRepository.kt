@@ -1,8 +1,14 @@
 package co.uk.bbk.culinarycompanion_enriketashehi
 
+import androidx.lifecycle.LiveData
+
 class RecipeRepository(private val recipeDao: RecipeDao) {
 
-    suspend fun getRecipeById(id: Int): Recipe? {
+    fun getAllRecipes(): LiveData<List<Recipe>> {
+        return recipeDao.getAllRecipes()
+    }
+
+    fun getRecipeById(id: Int): LiveData<Recipe?> {
         return recipeDao.getRecipeById(id)
     }
 
@@ -18,7 +24,5 @@ class RecipeRepository(private val recipeDao: RecipeDao) {
         recipeDao.deleteRecipe(recipe)
     }
 
-    suspend fun getAllRecipes(): List<Recipe> {
-        return recipeDao.getAllRecipes()
-    }
+
 }
