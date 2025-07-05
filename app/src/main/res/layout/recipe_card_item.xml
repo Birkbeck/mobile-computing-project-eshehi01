@@ -18,7 +18,8 @@
             android:orientation="vertical"
             android:padding="12dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="?colorOnPrimary">
 
             <!-- Category Chip -->
             <TextView
@@ -26,16 +27,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{recipe.category}"
-                android:background="@android:color/darker_gray"
-                android:textColor="@android:color/white"
-                android:paddingStart="8dp"
-                android:paddingEnd="8dp"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"
+                android:background="@drawable/chip_background"
+                android:textColor="?colorOnPrimaryContainer"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
                 android:textSize="12sp"
                 android:layout_gravity="start"
                 android:layout_marginBottom="8dp"
-                android:backgroundTint="@android:color/darker_gray"
+                android:backgroundTint="?colorPrimaryContainer"
                 android:drawablePadding="4dp"
                 app:drawableStartCompat="@android:drawable/ic_menu_info_details" />
 
@@ -46,7 +47,8 @@
                 android:layout_height="wrap_content"
                 android:text="@{recipe.title}"
                 android:textStyle="bold"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textColor="?colorOnPrimaryContainer" />
 
             <!-- Recipe Preview -->
             <TextView
@@ -57,6 +59,8 @@
                 android:maxLines="2"
                 android:ellipsize="end"
                 android:textSize="16sp"
+                android:textColor="?colorOnPrimaryContainer"
+                android:background="?colorOnPrimary"
                 android:layout_marginTop="4dp" />
 
             <!-- Select Recipe Button -->

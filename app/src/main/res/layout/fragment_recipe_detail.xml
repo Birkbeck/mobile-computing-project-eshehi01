@@ -7,7 +7,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="16dp"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        android:background="?colorPrimaryContainer">
 
         <!-- App title -->
         <TextView
@@ -17,6 +18,7 @@
             android:text="@string/app_title"
             android:textSize="28sp"
             android:textStyle="bold"
+            android:textColor="?colorOnPrimaryContainer"
             android:layout_gravity="center_horizontal"
             android:paddingBottom="8dp"/>
 
@@ -32,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/baseline_chevron_left_24"
-                android:background="@drawable/element_background"
+                android:background="?colorOnPrimary"
                 android:minWidth="48dp"
                 android:minHeight="48dp"
                 android:contentDescription="@string/back_button"
@@ -48,6 +50,7 @@
                 android:layout_weight="1"
                 android:hint="@string/hint_recipe_title"
                 android:textSize="20sp"
+                android:textColor="?colorOnPrimaryContainer"
                 android:textStyle="bold"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"/>
@@ -60,6 +63,7 @@
             android:text="@string/label_ingredients"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:textColor="?colorOnPrimaryContainer"
             android:paddingTop="16dp"
             android:paddingBottom="4dp"
             android:paddingStart="16dp"
@@ -79,7 +83,7 @@
                 android:hint="@string/placeholder_ingredients"
                 android:textSize="16sp"
                 android:padding="8dp"
-                android:background="#EEEEEE"
+                android:background="?colorOnPrimary"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"/>
         </ScrollView>
@@ -91,6 +95,7 @@
             android:text="@string/label_instructions"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:textColor="?colorOnPrimaryContainer"
             android:paddingTop="16dp"
             android:paddingBottom="4dp"
             android:paddingStart="16dp"
@@ -110,7 +115,7 @@
                 android:hint="@string/placeholder_instructions"
                 android:textSize="16sp"
                 android:padding="8dp"
-                android:background="#EEEEEE"
+                android:background="?colorOnPrimary"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"/>
         </ScrollView>
@@ -143,7 +148,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1.2"
                 android:text="@string/edit_recipe"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:textColor="?colorOnPrimaryContainer" />
         </LinearLayout>
 
     </LinearLayout>

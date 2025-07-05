@@ -9,7 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        android:background="?colorPrimaryContainer">
 
         <!-- App Title -->
         <TextView
@@ -19,6 +20,7 @@
             android:text="@string/culinary_companion"
             android:textSize="28sp"
             android:textStyle="bold"
+            android:textColor="?colorOnPrimaryContainer"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -62,6 +64,7 @@
             android:layout_height="wrap_content"
             android:text="@string/add_recipe"
             android:textSize="16sp"
+            android:textColor="?colorOnPrimaryContainer"
             android:layout_marginEnd="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
