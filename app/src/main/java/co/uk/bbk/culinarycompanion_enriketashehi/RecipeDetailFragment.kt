@@ -6,11 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import co.uk.bbk.culinarycompanion_enriketashehi.databinding.FragmentRecipeDetailBinding
-import kotlinx.coroutines.launch
 
 class RecipeDetailFragment : Fragment() {
 
@@ -37,30 +35,25 @@ class RecipeDetailFragment : Fragment() {
 
         currentRecipeId = args.recipeId
 
-        // Update the activity title
         requireActivity().title = getString(R.string.recipe_detail)
 
-        // Load the recipe data from the ViewModel/database
         if (currentRecipeId != -1) {
-            viewLifecycleOwner.lifecycleScope.launch {
-                val recipe = viewModel.getRecipeById(currentRecipeId)
+            viewModel.getRecipeById(currentRecipeId).observe(viewLifecycleOwner) { recipe ->
                 if (recipe != null) {
                     displayRecipe(recipe)
                 } else {
-                    // Handle recipe not found
                     binding.recipeTitleTextView.text = getString(R.string.recipe_not_found)
+                    binding.ingredientsTextView.text = ""
+                    binding.instructionsTextView.text = ""
                 }
             }
         }
 
-        // Handle back button click
         binding.backButton.setOnClickListener {
             findNavController().navigateUp()
         }
 
-        // Handle Edit Recipe button click
         binding.editRecipeButton.setOnClickListener {
-            // Pass recipeId to Create/Edit screen for editing
             val action = RecipeDetailFragmentDirections
                 .actionRecipeDetailFragmentToCreateEditRecipeFragment(recipeId = currentRecipeId)
             findNavController().navigate(action)
