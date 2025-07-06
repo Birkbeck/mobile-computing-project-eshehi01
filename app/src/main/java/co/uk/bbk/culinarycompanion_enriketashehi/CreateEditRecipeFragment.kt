@@ -13,19 +13,33 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import co.uk.bbk.culinarycompanion_enriketashehi.databinding.FragmentCreateEditRecipeBinding
 
+/**
+ * Fragment for creating or editing a recipe.
+ *
+ * - Allows entering title, preview, ingredients, instructions, and category.
+ * - Handles saving or deleting recipes via the ViewModel.
+ */
 class CreateEditRecipeFragment : Fragment() {
 
+    // ViewBinding to access UI components
     private var _binding: FragmentCreateEditRecipeBinding? = null
     private val binding get() = _binding!!
 
+    // ViewModel for accessing recipe data
     private val viewModel: RecipeViewModel by viewModels()
+
+    // Safe Args to receive arguments from navigation (recipeId)
     private val args: CreateEditRecipeFragmentArgs by navArgs()
 
+    // Holds the recipe currently being edited, or null if creating new
     private var currentRecipe: Recipe? = null
 
-    // Make these available at class-level so we can reuse them in populateFields
+    // Filtered list of categories excluding "Category" and "All"
     private lateinit var filteredCategories: List<String>
 
+    /**
+     * Inflate the fragment layout using ViewBinding.
+     */
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -35,16 +49,19 @@ class CreateEditRecipeFragment : Fragment() {
         return binding.root
     }
 
+    /**
+     * Set up UI and logic once the view is created.
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Full list from resources (including Category and All)
+        // Load full list of categories from resources (including Category and All)
         val fullCategories = resources.getStringArray(R.array.recipe_categories)
 
-        // Filtered list excludes "Category" and "All"
+        // Exclude "Category" and "All" from dropdown list
         filteredCategories = fullCategories.filter { it != "Category" && it != "All" }
 
-        // Create adapter for spinner dropdown with filtered categories
+        // Create spinner adapter with filtered categories
         val adapter = object : ArrayAdapter<String>(
             requireContext(),
             android.R.layout.simple_spinner_item,
@@ -57,12 +74,13 @@ class CreateEditRecipeFragment : Fragment() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.categorySpinner.adapter = adapter
 
-        // Set no selection initially
+        // No initial selection
         binding.categorySpinner.setSelection(-1, false)
 
-        // Show a spinner prompt
+        // Optional prompt text for spinner
         binding.categorySpinner.prompt = "Category"
 
+        // Listen for spinner selections (currently shows a Toast)
         binding.categorySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>,
@@ -70,8 +88,8 @@ class CreateEditRecipeFragment : Fragment() {
                 position: Int,
                 id: Long
             ) {
-                val selectedCategory = filteredCategories[position]
                 // Handle the selected category
+                val selectedCategory = filteredCategories[position]
                 Toast.makeText(requireContext(), "Selected: $selectedCategory", Toast.LENGTH_SHORT).show()
             }
 
@@ -80,10 +98,10 @@ class CreateEditRecipeFragment : Fragment() {
             }
         }
 
-        // Default state: hide delete button
+        // Hide delete button by default (only shown in edit mode)
         binding.deleteButton.visibility = View.GONE
 
-        // Check if editing existing recipe
+        // Check if we are editing an existing recipe
         if (args.recipeId != -1) {
             viewModel.getRecipeById(args.recipeId).observe(viewLifecycleOwner) { recipe ->
                 if (recipe != null) {
@@ -96,6 +114,7 @@ class CreateEditRecipeFragment : Fragment() {
             }
         }
 
+        // Navigation for toolbar buttons
         binding.backButton.setOnClickListener {
             findNavController().navigateUp()
         }
@@ -109,22 +128,30 @@ class CreateEditRecipeFragment : Fragment() {
         }
     }
 
+    /**
+     * Populate all UI fields with data from the given recipe.
+     *
+     * @param recipe the Recipe to display in the UI
+     */
     private fun populateFields(recipe: Recipe) {
         binding.recipeNameEditText.setText(recipe.title)
         binding.previewEditText.setText(recipe.preview)
         binding.ingredientsEditText.setText(recipe.ingredients)
         binding.instructionsEditText.setText(recipe.instructions)
 
-        // Find the index in filteredCategories (not in the full list)
+        // Find correct index for spinner selection
         val index = filteredCategories.indexOf(recipe.category)
         if (index >= 0) {
             binding.categorySpinner.setSelection(index, false)
         } else {
-            // Keep unselected if not found
+            // Keep spinner unselected if category not found
             binding.categorySpinner.setSelection(-1, false)
         }
     }
 
+    /**
+     * Save a new or edited recipe to the database.
+     */
     private fun saveRecipe() {
         val title = binding.recipeNameEditText.text.toString().trim()
         val preview = binding.previewEditText.text.toString().trim()
@@ -165,6 +192,9 @@ class CreateEditRecipeFragment : Fragment() {
         findNavController().navigateUp()
     }
 
+    /**
+     * Delete the currently edited recipe from the database.
+     */
     private fun deleteRecipe() {
         currentRecipe?.let { recipe ->
             viewModel.deleteRecipe(recipe)
@@ -172,6 +202,9 @@ class CreateEditRecipeFragment : Fragment() {
         }
     }
 
+    /**
+     * Clean up binding when the view is destroyed.
+     */
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
