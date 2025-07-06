@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Navigation graph for Culinary Companion app.
+    Defines the navigation destinations (fragments) and
+    the actions (transitions) between them.
+
+    Start destination: MainFragment (home screen)
+    Fragments included:
+    - MainFragment: shows recipe list and category filter
+    - RecipeDetailFragment: shows details of selected recipe
+    - CreateEditRecipeFragment: create or edit a recipe
+
+    Arguments and navigation actions are declared for
+    passing data and enabling smooth fragment transitions.
+-->
+
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
