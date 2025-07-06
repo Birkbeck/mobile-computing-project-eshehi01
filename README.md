@@ -21,3 +21,7 @@ Recipes are stored and retrieved locally. Data persists across app restarts.
 First deadline reached June 1st 2025:
 - Android project implemented with layout files
 - no functionality implemented
+
+Second deadline reached July 6th 2025:
+- all required functionality implemented
+- unit tests provided
