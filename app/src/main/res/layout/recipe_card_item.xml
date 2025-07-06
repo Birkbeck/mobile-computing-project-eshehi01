@@ -2,6 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!--
+    Layout for a single recipe card displayed in the recipe list.
+    Shows recipe title and preview, with a button to view details.
+    Used by the RecyclerView Adapter.
+    -->
+
     <data>
         <variable
             name="recipe"

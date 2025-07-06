@@ -2,6 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!--
+    Layout for creating or editing a recipe.
+    Contains input fields for title, preview, ingredients, instructions,
+    and a category spinner, plus Save, Delete, and Back buttons.
+    -->
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
