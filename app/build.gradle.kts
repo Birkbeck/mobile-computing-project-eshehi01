@@ -1,3 +1,5 @@
+// Gradle build script configuring plugins and dependencies for the app
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
