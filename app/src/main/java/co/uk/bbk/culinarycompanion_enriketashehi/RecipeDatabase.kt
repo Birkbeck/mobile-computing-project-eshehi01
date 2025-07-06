@@ -9,15 +9,24 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+/**
+ * Room database class for the Recipe entity.
+ * Provides a singleton instance of the database and prepopulates it on first run.
+ */
 @Database(entities = [Recipe::class], version = 1, exportSchema = false)
 abstract class RecipeDatabase : RoomDatabase() {
 
+    // Abstract function to get access to the DAO
     abstract fun recipeDao(): RecipeDao
 
     companion object {
         @Volatile
         private var INSTANCE: RecipeDatabase? = null
 
+        /**
+         * Returns the singleton instance of the database.
+         * If it doesn't exist yet, builds it using Room.
+         */
         fun getDatabase(context: Context): RecipeDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
@@ -25,14 +34,18 @@ abstract class RecipeDatabase : RoomDatabase() {
                     RecipeDatabase::class.java,
                     "recipe_database"
                 )
-                    .addCallback(roomCallback) // ✅ Attach callback here
-                    .fallbackToDestructiveMigration(false)
+                    .addCallback(roomCallback) // Add callback to prepopulate the DB
+                    .fallbackToDestructiveMigration(false) // Avoid wiping data on migration
                     .build()
                 INSTANCE = instance
                 instance
             }
         }
 
+        /**
+         * Callback triggered when the database is opened.
+         * Used here to check if prepopulation is needed.
+         */
         private val roomCallback = object : Callback() {
             override fun onOpen(db: SupportSQLiteDatabase) {
                 super.onOpen(db)
@@ -44,6 +57,9 @@ abstract class RecipeDatabase : RoomDatabase() {
             }
         }
 
+        /**
+         * Inserts a predefined list of recipes into the database if it's currently empty.
+         */
         private suspend fun prepopulateDatabase(recipeDao: RecipeDao) {
             val count = recipeDao.countRecipes()
             if (count == 0) {
@@ -95,10 +111,16 @@ abstract class RecipeDatabase : RoomDatabase() {
             }
         }
 
+        /**
+         * Used in unit tests to replace the singleton instance with a test database.
+         */
         fun setTestInstance(testDb: RecipeDatabase) {
             INSTANCE = testDb
         }
 
+        /**
+         * Clears the singleton instance, useful for resetting between tests.
+         */
         fun clearTestInstance() {
             INSTANCE = null
         }
