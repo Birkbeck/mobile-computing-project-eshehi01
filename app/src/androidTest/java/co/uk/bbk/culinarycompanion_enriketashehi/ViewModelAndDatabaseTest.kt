@@ -14,8 +14,16 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
+/**
+ * Unit test that verifies integration between:
+ * - Room database
+ * - ViewModel layer
+ *
+ * Ensures the ViewModel correctly reads data from the database.
+ */
 class ViewModelAndDatabaseTest {
 
+    // Rule to force LiveData to execute synchronously during tests
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
 
@@ -25,31 +33,34 @@ class ViewModelAndDatabaseTest {
 
     @Before
     fun setUp() {
+        // Get the application context used for initializing the database
         appContext = ApplicationProvider.getApplicationContext<Application>()
 
-        // Create in-memory Room database
+        // Create an in-memory Room database for testing
         database = Room.inMemoryDatabaseBuilder(
             appContext,
             RecipeDatabase::class.java
         )
-            .allowMainThreadQueries()
+            .allowMainThreadQueries() // Safe here because this is a test environment
             .build()
 
-        // Override singleton INSTANCE so ViewModel uses the in-memory database
+        // Set the singleton instance of RecipeDatabase to this in-memory test instance
         RecipeDatabase.setTestInstance(database)
 
-        // Create the ViewModel
+        // Create the ViewModel, which will now use the test database
         viewModel = RecipeViewModel(appContext)
     }
 
     @After
     fun tearDown() {
+        // Clean up resources after each test
         database.close()
         RecipeDatabase.clearTestInstance()
     }
 
     @Test
     fun insertRecipe_and_ViewModelEmitsRecipeList() = runBlocking {
+        // Create a test recipe to insert
         val recipe = Recipe(
             id = 1,
             title = "VMDB Test Recipe",
@@ -59,22 +70,27 @@ class ViewModelAndDatabaseTest {
             category = "Dinner"
         )
 
-        // Insert directly into DB through DAO
+        // Insert the recipe directly into the database using the DAO
         database.recipeDao().insertRecipe(recipe)
 
+        // Variable to hold the list of recipes observed from the ViewModel
         var recipesFromVM: List<Recipe>? = null
 
+        // Switch to the main dispatcher to observe LiveData
         withContext(Dispatchers.Main) {
             val observer = androidx.lifecycle.Observer<List<Recipe>> {
                 recipesFromVM = it
             }
 
+            // Observe the LiveData exposed by the ViewModel
             viewModel.allRecipes.observeForever(observer)
 
+            // Assert that LiveData emitted a non-null list
             assertNotNull(recipesFromVM)
             assertEquals(1, recipesFromVM?.size)
             assertEquals("VMDB Test Recipe", recipesFromVM?.first()?.title)
 
+            // Remove observer to avoid leaks
             viewModel.allRecipes.removeObserver(observer)
         }
     }
